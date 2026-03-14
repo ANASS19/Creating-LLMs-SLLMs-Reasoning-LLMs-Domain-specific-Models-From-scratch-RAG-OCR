@@ -1,0 +1,42 @@
+project:
+  name: mini_llm
+  seed: 42
+  device: auto
+
+data:
+  raw_text_path: data/corpus.txt
+  tokenizer_dir: tokenizer
+  train_bin_path: data/train_tokens.npy
+  val_bin_path: data/val_tokens.npy
+  split_ratio: 0.9
+
+tokenizer:
+  vocab_size: 32000
+  min_frequency: 2
+  special_tokens:
+    - "[PAD]"
+    - "[UNK]"
+    - "[BOS]"
+    - "[EOS]"
+
+model:
+  vocab_size: 32000
+  max_seq_len: 256
+  d_model: 512
+  n_heads: 8
+  n_layers: 8
+  d_ff: 2048
+  dropout: 0.1
+
+training:
+  batch_size: 16
+  learning_rate: 0.0003
+  weight_decay: 0.01
+  num_epochs: 5
+  eval_interval: 200
+  save_interval: 500
+
+generation:
+  max_new_tokens: 100
+  temperature: 1.0
+  top_k: 50
